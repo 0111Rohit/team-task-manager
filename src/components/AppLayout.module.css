@@ -1,0 +1,76 @@
+.appContainer {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(12px);
+  border-right: 1px solid var(--card-border);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 3rem;
+  padding: 0 1rem;
+}
+
+.logo span {
+  color: var(--primary-color);
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.navItem {
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.navItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+}
+
+.navItem.active {
+  background: rgba(79, 70, 229, 0.2);
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.bottomNav {
+  margin-top: auto;
+  padding: 0 1rem;
+}
+
+.logoutBtn {
+  background: none;
+  color: var(--text-muted);
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 0;
+  font-weight: 500;
+}
+
+.logoutBtn:hover {
+  color: var(--danger);
+}
+
+.mainContent {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
