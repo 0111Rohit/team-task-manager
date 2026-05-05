@@ -3,12 +3,12 @@ generator client {
 }
 
 datasource db {
-  provider = "mongodb"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
 model User {
-  id             String          @id @default(auto()) @map("_id") @db.ObjectId
+  id             String          @id @default(uuid())
   name           String
   email          String          @unique
   password       String
@@ -20,21 +20,21 @@ model User {
 }
 
 model Project {
-  id          String          @id @default(auto()) @map("_id") @db.ObjectId
+  id          String          @id @default(uuid())
   name        String
   description String?
   createdAt   DateTime        @default(now())
   updatedAt   DateTime        @updatedAt
-  createdById String          @db.ObjectId
+  createdById String
   createdBy   User            @relation("ProjectCreator", fields: [createdById], references: [id])
   members     ProjectMember[]
   tasks       Task[]
 }
 
 model ProjectMember {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId    String   @db.ObjectId
-  projectId String   @db.ObjectId
+  id        String   @id @default(uuid())
+  userId    String
+  projectId String
   role      String   @default("MEMBER") // ADMIN or MEMBER
   createdAt DateTime @default(now())
   user      User     @relation(fields: [userId], references: [id])
@@ -44,7 +44,7 @@ model ProjectMember {
 }
 
 model Task {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  id          String   @id @default(uuid())
   title       String
   description String?
   dueDate     DateTime?
@@ -52,8 +52,8 @@ model Task {
   status      String   @default("TODO") // TODO, IN_PROGRESS, DONE
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  projectId   String   @db.ObjectId
+  projectId   String
   project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  assignedToId String?  @db.ObjectId
+  assignedToId String?
   assignedTo  User?    @relation("TaskAssignee", fields: [assignedToId], references: [id])
 }
