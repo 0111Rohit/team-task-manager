@@ -51,7 +51,7 @@ A full-stack Team Task Management Web Application built with Next.js, Prisma, an
    ```bash
    npm run dev
    ```
-   Open [http://localhost:3000](http://localhost:3000) in your browser.
+   Open [http://localhost:3000](team-task-manager-production-046e.up.railway.app) in your browser.
 
 ## 🌍 Deployment on Railway
 
